@@ -1,21 +1,39 @@
 class UI {
+    // help function to add DOM element
+    addUIElement(name, classname = '', textcontent = '', atributes = {}){
+        const element = document.createElement(name)
+        // add css style class to element
+        if(classname !== ''){
+            element.className = classname
+        }
+        // add text content to element
+        element.appendChild(document.createTextNode(textcontent))
+        // add atributes to element
+        if (Object.keys(atributes).length > 0){
+            for (let key in atributes){
+                element.setAttribute(key, atributes[key])
+            }
+        }
+        return element
+    }
     addBook(book){
         // create <tr> element
-        const tr = document.createElement('tr')
+        const tr = this.addUIElement('tr')
         // td for title, author and isbn
         for (let element in book){
-            //
-            console.log(name + " " + book[name])
-            let td = document.createElement('td')
-            let text = document.createTextNode(book[name])
-            td.appendChild(text)
+            // create <td> element and add text
+            let td = this.addUIElement('td', '', book[name])
+            // add td to tr
             tr.appendChild(td)
-            console.log(tr)
         }
-        let td = document.createElement('td')
-        const link = document.createElement('a')
+        // X link
+        // create <td> element
+        let td = this.addUIElement('td')
+        // create <a> element
+        const link = this.addUIElement('a', '', 'X', {'href':'#'})
+        // set href atribute to <a>
         link.setAttribute('href', '#')
-        // add
+        // add text content to <a>
         link.appendChild(document.createTextNode('X'))
         // add <a> to <li>
         td.appendChild(link)
