@@ -1,6 +1,7 @@
 class UI {
     // help function to add DOM element
     addUIElement(name, classname = '', textcontent = '', atributes = {}){
+        // create element
         const element = document.createElement(name)
         // add css style class to element
         if(classname !== ''){
@@ -18,29 +19,25 @@ class UI {
     }
     addBook(book){
         // create <tr> element
-        const tr = this.addUIElement('tr')
+        const tr = this.addUIElement('tr');
         // td for title, author and isbn
-        for (let element in book){
+        for(let name in book){
             // create <td> element and add text
-            let td = this.addUIElement('td', '', book[name])
+            let td = this.addUIElement('td', '', book[name]);
             // add td to tr
             tr.appendChild(td)
         }
         // X link
         // create <td> element
-        let td = this.addUIElement('td')
+        let td = this.addUIElement('td');
         // create <a> element
-        const link = this.addUIElement('a', '', 'X', {'href':'#'})
-        // set href atribute to <a>
-        link.setAttribute('href', '#')
-        // add text content to <a>
-        link.appendChild(document.createTextNode('X'))
-        // add <a> to <li>
-        td.appendChild(link)
+        const link = this.addUIElement('a', '', 'X', {'href':'#'});
+        // add link to td
+        td.appendChild(link);
         // add td to tr
-        tr.appendChild(td)
+        tr.appendChild(td);
         // add tr to tbody
-        const booksList = document.querySelector('#books-list')
-        booksList.appendChild(tr)
+        const booksList = document.querySelector('#books-list');
+        booksList.appendChild(tr);
     }
 }
